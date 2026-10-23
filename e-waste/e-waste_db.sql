@@ -488,5 +488,6 @@ ALTER TABLE ONLY public.receipt
 -- PostgreSQL database dump complete
 --
 
-\unrestrict pK1KrgabWk83bXUAyVoHL1gtucfxeje9djhn4hm9GgLCDse2RrfZCtuXpDA6Cr1
+\unrestrict pK1KrgabWk83bXUAyVoHL1gtucfxeje9djhn4hm9GgLCDse2RrfZCtuXpDA6Cr1        
 
+    
