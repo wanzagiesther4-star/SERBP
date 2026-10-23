@@ -1,37 +1,60 @@
 <?php
-session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+error_reporting(0);
+ini_set('display_errors', 0);
 
-include 'db_connect.php';
+session_start();
+
+require_once 'db_connect.php';
+//include 'db_connect.php';
+$conn = $conn ?? ($connect ?? null);
+$errors = '';
+$error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fullName = trim($_POST['fullName'] ?? '');
-    $role_id = (int) trim($_POST['role_id'] ?? '19');
-    $phone = trim($_POST['phone'] ?? '');
-    $email = trim($_POST['email'] ?? '');
+    $role_id = (int) trim($_POST['role_id'] ?? '22'||'23');
+    $phone = (int)trim($_POST['phone'] ?? '');
+    $staff_email = trim($_POST['email'] ?? '');
     $user_location = trim($_POST['location'] ?? '');
     $user_password = $_POST['password'] ?? '';
     $confirm_password = $_POST['cPassword'] ?? '';
 
     if ($user_password !== $confirm_password) {
-        echo "<script>alert('Passwords do not match. Please re-enter them.');</script>";
-    } elseif ($fullName === '' || $phone === '' || $email === '' || $user_location === '') {
+        $error="Password do not match";
+    } elseif ($fullName === '' || $phone === 0 || $staff_email === '' || $user_location === '') {
         echo "<script>alert('Please complete all required fields.');</script>";
     } else {
+        $sql = "SELECT staff_email FROM users WHERE staff_email = $1";
+        $result = pg_query_params($conn, $sql, array($staff_email));
 
-        $sql = "INSERT INTO users (username,email,phone_no,passwords,user_location,role_id) VALUES ($1,$2,$3,$4,$5,$6)";
-        $result4 = pg_query_params($conn, $sql, array($fullName,$email,$phone,$user_password,$user_location,$role_id));
-    }
+          if (pg_num_rows($result) > 0) {
+            $errors = "Email already exists.";
+        }else{
+            $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
+                $sql2 = "INSERT INTO users (username,staff_email,phone_no,passwords,user_location,role_id) VALUES ($1,$2,$3,$4,$5,$6)";
+                
+                $result2 = pg_query_params($conn, $sql2, array($fullName,$staff_email,$phone,$hashed_password,$user_location,$role_id));
 
-        if ($result4) {
-            header("Location:loginpage.php");
-            echo "<script>window.location.href='loginpage.php';</script>";
-            echo "<script>alert('Registration successfully');</script>";
-            exit();
+                if ($result2 === false) {
+                    $errors = "Registration failed. Please try again.";
+                }else{
+                   // echo "<script>alert('Registration successful. Please login.');</script>";
+                      
+                    header("Location:loginpage.php");
+                    echo "<script>window.location.href='loginpage.php';</script>";
+                    echo "<script>alert('Registration successfully');</script>";
+                    exit();
+                
+                }
+            
+
+                
         }
-}else{
-        echo "<script>alert('Error creating account: " . pg_last_error($conn) . "');</script>";
+
+        }
+
+
+
 }
 
 ?>
@@ -78,16 +101,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input class="input" id="fullName" name="fullName" type="text" placeholder="Enter your full name" required>
                     <label>ROLE</label>
                     <label class="option">
-                        <input type="radio" name="role_id" value="18" required> RECOVERY COORDINATORY
+                        <input type="radio" name="role_id" value="22" required> RECOVERY COORDINATORY
                     </label>
                     <label class="option">
-                        <input type="radio" name="role_id" value="19"> ASSESSMENT TECHNICIAN 
+                        <input type="radio" name="role_id" value="23"> ASSESSMENT TECHNICIAN 
                     </label>
 
                     <label for="phone">Phone Number</label>
                     <input class="input" id="phone" name="phone" type="tel" placeholder="Enter your phone number" inputmode="numeric" pattern="[0-9]+" required>
 
                     <label for="email">Email</label>
+                    <?php if(!empty($errors)): ?>
+                        <p  style="color:#c0392b;"><?php echo htmlspecialchars($errors); ?></p>
+                    <?php endif; ?>
                     <input class="input" id="email" name="email" type="email" placeholder="Enter your email address" required>
 
                     <label for="location">Street/Location</label>
@@ -96,7 +122,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="password">Enter password</label>
                     <input class="input" id="password" name="password" type="password" placeholder="Enter your password" required>
                     <label for="password">Confirm password</label>
+                    <?php if(!empty($error)): ?>
+                        <p  style="color:#c0392b;"><?php echo htmlspecialchars($error); ?></p>
+                    <?php endif; ?>
                     <input class="input" id="cPassword" name="cPassword" type="password" placeholder="Comfirm your password" required>
+
 
                     <button type="submit">Register</button>
 
