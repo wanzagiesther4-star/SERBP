@@ -4,6 +4,14 @@
             box-sizing: border-box;
         }
 
+        html {
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
         body {
             display: flex;
             flex-direction: column;
@@ -12,8 +20,11 @@
             background-repeat: no-repeat;
             animation: slideshow 30s infinite;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
             align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
         body::before {
@@ -30,51 +41,114 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            align-items: center;
-            width: 100%;
+            align-items: stretch;
+            width: min(1200px, calc(100% - 24px));
             max-width: 1200px;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
             padding: 40px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            margin-top:10px;
+            margin-top: 10px;
+            gap: 24px;
+            flex-wrap: wrap;
         }
         .left-section {
-            flex: 1;
-            padding-right: 20px;
-            margin-top: -800px;
+            flex: 1 1 420px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            margin-top: 0px;
+            background-color:#e0e0e0;
+            min-height: 1000px;
+            border-radius: 10px;
+            min-width: 0;
         }
         .left-section h1 {
             font-size: 32px;
             color: #27ae60;
             margin-bottom: 20px;
             text-shadow: 1px 1px 2px #27ae60;
+            text-align: center;
 
 
         }
         .right-section {
-            flex: 1;
-            padding-left: 50px;
+            flex: 1 1 420px;
+            padding-left: 0;
+            min-width: 0;
+        }
+        .OTP{
+            position: relative;
+            width: min(100%, 520px);
+            margin: 50px auto 0;
+            padding: 0 12px;
+        }
+        .OTP p{
+            font-size: clamp(0.95rem, 2vw, 1.25rem);
+            color: #27ae60;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px #27ae60;
+            text-align: center;             
+        }
+
+        .receipt{
+            margin-top: 20px;
+        }
+        .receipt h3{
+            font-size: 26px;
+            color: #27ae60;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 1px #27ae60;
+            text-align: center;    
+        }
+        .receipts{
+            display: flex;
+            flex-direction: column;
+            background-color:white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            color: #1e8449;
+            text-align: center;
+            height: 480px;
+            width: min(100%, 500px);
+            margin-left: 15px;
+            border-radius: 20px;
+            max-width: 100%;
+        }
+        .receipts h3{
+            font-size: 20px;
+
+        }
+        .receipt_content{
+            flex:1;
+            align-content: center;
+        }
+        .receipt_button{
+            display: flex;
+            flex-direction: row;
+        }
+        .pdf_button{
+            flex:1;
+
         }
 
         @keyframes slideshow {
             0% {
-                background-image: url("image/p2.jpg");
+                background-image: url("image/p1.jpg");
             }
             10% {
                 background-image: url("image/p3.webp");
             }
             20% {
-                background-image: url("image/p6.webp");
+                background-image: url("image/p5.webp");
             }
             30% {
-                background-image: url("image/p4.jpg");
+                background-image: url("image/p6.jpg");
             }
             40% {
-                background-image: url("image/p5.jpg");
+                background-image: url("image/p7.jpg");
             }
             50% {
-                background-image: url("image/p2.jpg");
+                background-image: url("image/p8.jpg");
             }
         }
 
@@ -187,9 +261,76 @@
             box-shadow: 0 3px 10px rgba(39, 174, 96, 0.3);
         }
 
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                padding: 24px 18px;
+            }
+
+            .left-section {
+                width: 100%;
+                min-height: auto;
+                padding: 18px 14px;
+            }
+
+            .receipts {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .right-section {
+                width: 100%;
+            }
+
+            form {
+                max-width: 100%;
+            }
+        }
+
         @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                height: auto;
+                padding: 10px 16px;
+                gap: 12px;
+            }
+
+            .left-header,
+            .right-header {
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                padding-top: 0;
+            }
+
+            .left-header {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .icon {
+                width: 90px;
+                height: auto;
+            }
+
+            .name {
+                font-size: 14px;
+                padding-top: 0;
+                padding-left: 0;
+            }
+
+            .right-header {
+                gap: 10px;
+            }
+
+            .container {
+                margin-top: 8px;
+            }
+
             fieldset {
-                padding: 25px;
+                padding: 25px 18px;
             }
 
             legend {
