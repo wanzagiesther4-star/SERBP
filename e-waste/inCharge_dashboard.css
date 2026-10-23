@@ -1,0 +1,147 @@
+            .container {
+                display: flex;
+                position:relative;
+                flex-direction: column;
+                max-width: 1100px;
+                margin: 32px auto;
+                padding: 0 20px;
+            }
+            .panel {
+                background: white;
+                border-radius: 14px;
+                padding: 24px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                margin-bottom: 22px;
+                margin-top: 30px;
+                max-width: 100%;
+            }
+            h1 {
+                margin-top: 0;
+                color: #1f3d2d;
+            }
+            .stats {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 18px;
+            }
+            .stat-box {
+                background: #eafaf1;
+                border: 1px solid #c9ebd6;
+                border-radius: 12px;
+                padding: 18px;
+            }
+            .stat-box strong {
+                display: block;
+                font-size: 28px;
+                color: #27ae60;
+                margin-top: 8px;
+            }
+            .nav {
+                display: flex;
+                margin-right: 50px;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+            .nav a {
+                text-decoration: none;
+                color: white;
+                background:none;
+                padding: 10px 16px;
+                border-radius: 8px;
+                margin-top:-10px;
+            }
+            .reports {
+                margin-top: 20px;
+                display: flex;
+                flex-direction:row;
+            }
+            .report-stats {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+            .view-report {
+                display: flex;
+                align-items: center;
+                justify-content:right;
+            }
+            .view-report button {
+                background-color: #27ae60;
+                color: white;
+                border: none;
+                padding: 20px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            .view-report button:hover {
+                background-color: #1e8449;
+            }
+            .to_reports{
+                display:none;
+                margin:0;
+                flex-direction:column;
+                position:fixed;
+                top:50%;
+                left:50%;
+                transform:translate(-50%, -50%);
+                width:min(90vw, 720px);
+                max-height:85vh;
+                overflow:auto;
+                box-sizing:border-box;
+                padding:24px;
+                background-color:#8f908f;
+                color:white;
+                border-radius:14px;
+                z-index:50;
+                box-shadow:0 8px 24px rgba(0,0,0,0.25);
+            }
+            .to_reports h3{
+                text-align:center;
+            }
+            .Rcontent{
+                display:flex;
+                flex-direction:row;
+                flex-wrap:wrap;
+                gap:16px;
+                justify-content:center;
+                text-align: center;
+            }
+            .Rcontent .stat-box{
+                flex:1 1 260px;
+                width:auto;
+                min-height:150px;
+                margin:0;
+                background-color:#1f3d2d;
+                color:white;
+            }
+            .Rbutton{
+                display:flex;
+                justify-content:center;
+                margin-top:20px;
+            }
+            .Rbutton button{
+                width:auto;
+                min-width:140px;
+                padding: 14px;
+                background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+            }
+            .Rbutton button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+                background: linear-gradient(135deg, #229954 0%, #1e8449 100%);
+            }
+            .Rbutton button:active {
+                transform: translateY(-1px);
+                box-shadow: 0 3px 10px rgba(39, 174, 96, 0.3);
+            }
