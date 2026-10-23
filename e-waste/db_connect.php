@@ -1,10 +1,10 @@
 <?php
 
-$host = "localhost";
+$host = "dpg-dbdkdhl9fdbs73beigq0-a.oregon-postgres.render.com";
 $port="5432";
-$user = "postgres";
-$password = "Eugsther2006";
-$dbname = "e-waste_db";
+$user = "eugsther";
+$password = "ioD2CWJM3f37DMSxzFZgP18QzFUI4LCk";
+$dbname = "e_wastedb_ocxc";
 
 $conn = pg_connect("host='$host' port='$port' dbname='$dbname' user='$user' password='$password'");
 if ($conn === false) {
