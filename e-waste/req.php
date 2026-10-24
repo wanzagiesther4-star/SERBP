@@ -44,10 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';  
                 $mail->SMTPAuth = true;  
-                $mail->Username = 'anthonynjama@gmail.com';  
+                $mail->Username = 'www.anthonynjama@gmail.com';  
                 $mail->Password = 'ykboljzsnikjjdio';  
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  
-                $mail->Port = 587;  
+                $mail->Port = 465; 
+                $mail->Timeout = 60;
 
                 $mail->setFrom('www.anthonynjama@gmail.com', 'SERBP');
                 $mail->addAddress($email);  
