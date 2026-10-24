@@ -49,6 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  
                 $mail->Port = 465; 
                 $mail->Timeout = 60;
+                $mail->SMTPDebug = 3;
+                $mail->Debugoutput = 'html';
 
                 $mail->setFrom('www.anthonynjama@gmail.com', 'SERBP');
                 $mail->addAddress($email);  
