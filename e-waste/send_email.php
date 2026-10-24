@@ -9,8 +9,8 @@ $email = new PHPMailer(true);
     $email->SMTPAuth = true;  
     $email->Username = 'www.anthonynjama@gmail.com';  
     $email->Password = 'ykboljzsnikjjdio';  
-    $email->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  
-    $email->Port = 587;  
+    $email->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  
+    $email->Port = 465;  
 
     $email->setFrom('www.anthonynjama@gmail.com', 'SERBP');  
     $email->addAddress($email);  
