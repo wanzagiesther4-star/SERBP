@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $result2 = pg_query_params($conn, $sql2, array($fullName,$staff_email,$phone,$hashed_password,$user_location,$role_id));
 
                 if ($result2 === false) {
-                    $errors = "Registration failed. Please try again.";
+                    die(pg_last_error($conn));
                 }else{
                    // echo "<script>alert('Registration successful. Please login.');</script>";
                       
@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php if(!empty($error)): ?>
                         <p  style="color:#c0392b;"><?php echo htmlspecialchars($error); ?></p>
                     <?php endif; ?>
-                    <input class="input" id="cPassword" name="cPassword" type="password" placeholder="Comfirm your password" required>
+                    <input class="input" id="cPassword" name="cPassword" type="password" placeholder="Confirm your password" required>
 
 
                     <button type="submit">Register</button>
