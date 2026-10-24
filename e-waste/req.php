@@ -66,7 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         die("Mailer Error: " . $mail->ErrorInfo);
                         }
                 
-                $mail->SMTPDebug = 3;
                  
              
 
