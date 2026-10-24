@@ -12,7 +12,7 @@ $error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fullName = trim($_POST['fullName'] ?? '');
-    $role_id = (int) trim($_POST['role_id'] ?? '22'||'23');
+    $role_id = isset($_POST['role_id']) ? (int)$_POST['role_id'] : 0;
     $phone = (int)trim($_POST['phone'] ?? '');
     $staff_email = trim($_POST['email'] ?? '');
     $user_location = trim($_POST['location'] ?? '');
