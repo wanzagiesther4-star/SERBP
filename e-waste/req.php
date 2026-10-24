@@ -59,8 +59,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 You can use this number to track the status of your request.
                 ";  
 
-                $mail->send();
 
+                try {
+                    $mail->send();
+                    } catch (Exception $e) {
+                        die("Mailer Error: " . $mail->ErrorInfo);
+                        }
+                
+                $mail->SMTPDebug = 3;
                  
              
 
