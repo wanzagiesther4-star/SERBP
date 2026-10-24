@@ -46,8 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->SMTPAuth = true;  
                 $mail->Username = 'www.anthonynjama@gmail.com';  
                 $mail->Password = 'ykboljzsnikjjdio';  
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  
-                $mail->Port = 587; 
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  
+                $mail->Port = 465; 
                 $mail->Timeout = 60;
                 $mail->SMTPDebug = 3;
                 $mail->Debugoutput = 'html';
